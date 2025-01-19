@@ -16,7 +16,7 @@ const fetchUserName = async () => {
 
         if (res.ok) {
             const user = await res.json();
-            document.getElementById('user-name').textContent = `Welcome, ${user.name}`;
+            document.getElementById('user-name').textContent = `Welcome, ${user.username}`;
         } else {
             alert('Failed to fetch user information.');
         }

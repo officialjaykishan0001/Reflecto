@@ -35,3 +35,12 @@
 # } 
 
 # DELETE  http://localhost:5000/api/journals/delete/678cc7ad68d5719c5b07db35 
+
+
+GET  https://reflecto-jnv1.onrender.com/api/users/me 
+# Content-Type: application/json
+
+# {
+#     "email": "jaykishankharwar215@gmail.com",
+#     "password": "J@ykishan215"
+# }
