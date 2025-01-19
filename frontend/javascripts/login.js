@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:5000/api/users/login'; // Replace with your backend URL
+const apiUrl = 'https://reflecto-jnv1.onrender.com/api/users/login'; // Replace with your backend URL
 
 document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();

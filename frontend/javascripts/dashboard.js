@@ -1,10 +1,29 @@
-const apiUrl = 'http://localhost:5000/api/journals'; // Replace with your backend URL
-const token = localStorage.getItem('token'); // Assume JWT token is stored after login
+const apiUrl = 'https://reflecto-jnv1.onrender.com/api/journals'; // Journals API endpoint
+const userApiUrl = 'https://reflecto-jnv1.onrender.com/api/users'; // Users API endpoint
+const token = localStorage.getItem('token'); // JWT token stored after login
 
 if (!token) {
     alert('Please log in to access the dashboard.');
     window.location.href = 'login.html';
 }
+
+// Fetch and display user's name
+const fetchUserName = async () => {
+    try {
+        const res = await fetch(`${userApiUrl}/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (res.ok) {
+            const user = await res.json();
+            document.getElementById('user-name').textContent = `Welcome, ${user.name}`;
+        } else {
+            alert('Failed to fetch user information.');
+        }
+    } catch (err) {
+        console.error('Error fetching user information:', err);
+    }
+};
 
 // Fetch and display journal entries
 const fetchJournals = async () => {
@@ -97,4 +116,9 @@ const logout = () => {
 // Event Listeners
 document.getElementById('journal-form').addEventListener('submit', addJournal);
 document.getElementById('logout-btn').addEventListener('click', logout);
-window.onload = fetchJournals;
+
+// Fetch user name and journals on load
+window.onload = () => {
+    fetchUserName();
+    fetchJournals();
+};
