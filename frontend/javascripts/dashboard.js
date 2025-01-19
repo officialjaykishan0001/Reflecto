@@ -24,6 +24,12 @@ const fetchUserName = async () => {
         console.error('Error fetching user information:', err);
     }
 };
+// Format date to display in a readable format
+const formatDate = (dateString) => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', options); // Adjust locale as needed
+};
 
 // Fetch and display journal entries
 const fetchJournals = async () => {
@@ -42,6 +48,7 @@ const fetchJournals = async () => {
                     <div class="bg-white p-4 rounded shadow-md">
                         <h3 class="text-xl font-bold">${journal.title}</h3>
                         <p class="text-gray-700 mt-2">${journal.content}</p>
+                        <p class="text-gray-500 text-sm mt-2">${formatDate(journal.createdAt)}</p> <!-- Date, Time, and Day -->
                         <div class="flex justify-end space-x-2 mt-4">
                             <button onclick="deleteJournal('${journal._id}')" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
                                 Delete
