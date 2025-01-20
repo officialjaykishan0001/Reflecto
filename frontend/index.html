@@ -1,12 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
+  <title>Document</title>
+  <style>
+    /* Optional: Hide default scrollbar (still accessible for keyboard users) */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* Internet Explorer 10+ */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+  </style>
 </head>
-<body>
-    helow 
+
+<body class="bg-[#FBFBFE] text-[#050315]">
+  <nav class="flex justify-between p-3 items-center">
+    <div class="flex items-center gap-1">
+      <div>
+        <img class="rounded-full"
+          src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+          alt="profile-img" width="50px">
+      </div>
+      <div class="font-medium">Hi, Arjun</div>
+    </div>
+    <div>
+      <span class="material-symbols-outlined">
+        menu
+      </span>
+    </div>
+  </nav>
+  <main>
+    <div class="container p-[13px]">
+      <div class="font-bold text-[25px]">My Journals</div>
+
+      <!-- Scrollable category section -->
+      <div class="flex gap-2 mt-4 overflow-x-scroll no-scrollbar">
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">All</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Work</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Life</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Travel</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Food</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Fitness</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Books</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Health</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Goals</span>
+        <span class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Ideas</span>
+      </div>
+
+      <div class=" mt-4 h-[75vh] w-full overflow-y-scroll no-scrollbar flex flex-col gap-4">
+        <!-- Scrollable Card 1 -->
+        <div class="min-h-[150px] bg-[#FEE2E2] p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-bold">Buy honey 100% original</h3>
+          <p class="text-sm mt-2">
+            Buy the new brand honey for my family. Here's the price.
+          </p>
+        </div>
+        <div class="min-h-[150px] bg-[#FEE2E2] p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-bold">Buy honey 100% original</h3>
+          <p class="text-sm mt-2">
+            Buy the new brand honey for my family. Here's the price.
+          </p>
+        </div>
+        <div class="min-h-[150px] bg-[#FEE2E2] p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-bold">Buy honey 100% original</h3>
+          <p class="text-sm mt-2">
+            Buy the new brand honey for my family. Here's the price.
+          </p>
+        </div>
+        <div class="min-h-[150px] bg-[#FEE2E2] p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-bold">Buy honey 100% original</h3>
+          <p class="text-sm mt-2">
+            Buy the new brand honey for my family. Here's the price.
+          </p>
+        </div>
+      
+        <!-- Scrollable Card 2 -->
+        <div class="min-h-[150px] bg-[#FEF9C3] p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-bold">Plan for today</h3>
+          <ul class="mt-2 space-y-1">
+            <li class="text-sm">🛒 Buy food</li>
+            <li class="text-sm">🏋️‍♂️ Gym</li>
+            <li class="text-sm">📅 Meeting</li>
+          </ul>
+        </div>
+      
+        <!-- Scrollable Card 3 -->
+        <div class="min-h-[150px] bg-[#DBEAFE] p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-bold">Tax payment before the end of March</h3>
+          <p class="text-sm mt-2">
+            This is a reminder note to pay taxes before the deadline. Don’t miss it, you could be fined!
+          </p>
+        </div>
+      
+        <!-- Scrollable Card 4 -->
+        <div class="min-h-[150px] bg-[#FFF7EB] p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-bold">Password WiFi gelato cafe</h3>
+          <p class="text-sm mt-2">
+            WiFi password is updated every 4 weeks. Keep it safe!
+          </p>
+        </div>
+      </div>
+      
+
+
+    </div>
+  </main>
+
+
 </body>
+
 </html>
