@@ -8,11 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add_2" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back" />
-  <title>Document</title>
+  <title>Reflecto - Journalling is easy now!</title>
   <style>
     /* Optional: Hide default scrollbar (still accessible for keyboard users) */
     .no-scrollbar::-webkit-scrollbar {
@@ -127,25 +123,65 @@
     </svg>
   </div>
 
-  <div id="create-edit-journal" class="">
-    <div class="">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
-          <path d="M13.5 16C13.5 16 10.5 13.054 10.5 12C10.5 10.9459 13.5 8 13.5 8" stroke="currentColor"
-            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  <div class="w-full max-w-lg p-4 bg-white shadow-lg rounded-lg absolute top-0 h-[100vh]">
+    <!-- Header -->
+    <div class="flex justify-between items-center border-b pb-2">
+      <button class="text-gray-500 hover:text-gray-700">
+        <!-- Back Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
         </svg>
-      </div>
-      <div>
-        <span class="material-symbols-outlined">
-          menu
-        </span>
+      </button>
+      <div class="flex items-center space-x-4">
+        <button class="text-gray-500 hover:text-gray-700">
+          <!-- Bell Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M15 17h5l-1.405-1.405a2.032 2.032 0 00-.607-.45M15 17H9m6 0a3.001 3.001 0 01-6 0M9 17H4m0 0l1.405-1.405c.172-.172.343-.33.607-.45M9 17V5a4 4 0 018 0v7" />
+          </svg>
+        </button>
+        <button class="text-gray-500 hover:text-gray-700">
+          <!-- Save Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7" />
+          </svg>
+        </button>
       </div>
     </div>
-  </div>
-  <script>
 
-  </script>
+    <!-- Content -->
+    <div class="mt-4 h-[90%]">
+      <input type="text" placeholder="Title"
+        class="w-full text-2xl font-semibold text-gray-800 outline-none focus:ring-2 focus:ring-blue-500 mb-2" />
+      <textarea placeholder="Note"
+        class="w-full text-gray-600 outline-none focus:ring-2 focus:ring-blue-500 h-[95%] resize-none"></textarea>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between mt-4 text-gray-500">
+      <div class="flex items-center space-x-2">
+        <button>
+          <!-- Color Palette Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M15 11a3.001 3.001 0 01-2.83 2h-3.34a3.001 3.001 0 01-2.83-2h0M12 17a3.001 3.001 0 002.83-2h3.34a3.001 3.001 0 002.83 2h0M9 17H4m9-4a3.001 3.001 0 002.83-2h3.34a3.001 3.001 0 002.83 2h0" />
+          </svg>
+        </button>
+        <button>
+          <!-- Text Style Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20v-6m-6 6h12M12 4v6m6-6H6m12 0H6" />
+          </svg>
+        </button>
+      </div>
+      <span class="text-sm">Edited just now</span>
+    </div>
+  </div>
 </body>
 
 </html>
