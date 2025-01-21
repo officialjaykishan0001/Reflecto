@@ -16,7 +16,7 @@ const fetchUserName = async () => {
 
         if (res.ok) {
             const user = await res.json();
-            document.getElementById('user-name').textContent = `Welcome, ${user.username}`;
+            document.getElementById('user-name').textContent = `Hi, ${user.username}`;
         } else {
             alert('Failed to fetch user information.');
         }
@@ -45,16 +45,11 @@ const fetchJournals = async () => {
             journalEntries.innerHTML = journals
                 .map(
                     (journal) => `
-                    <div class="bg-white p-4 rounded shadow-md">
-                        <h3 class="text-xl font-bold">${journal.title}</h3>
-                        <p class="text-gray-700 mt-2">${journal.content}</p>
-                        <p class="text-gray-500 text-sm mt-2">${formatDate(journal.createdAt)}</p> <!-- Date, Time, and Day -->
-                        <div class="flex justify-end space-x-2 mt-4">
-                            <button onclick="deleteJournal('${journal._id}')" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
+                    <div class="journal-card min-h-[150px] bg-[#DBEAFE] p-4 rounded-lg shadow-md" data-id="${journal._id}">
+                  <h3 class="text-lg font-bold">${journal.title}</h3>
+                  <p class="text-sm mt-2">${journal.content}</p>
+                </div>
+                
                 `
                 )
                 .join('');
@@ -68,7 +63,7 @@ const fetchJournals = async () => {
 
 // Add a new journal entry
 const addJournal = async (event) => {
-    event.preventDefault();
+
 
     const title = document.getElementById('title').value;
     const content = document.getElementById('content').value;
@@ -84,7 +79,10 @@ const addJournal = async (event) => {
         });
 
         if (res.ok) {
-            document.getElementById('journal-form').reset();
+            // document.getElementById('journal-form').reset();
+            document.getElementById('title').value = "";
+            document.getElementById('content').value = "";
+            document.getElementById('journal-edit-workplace').classList.add('hidden');
             fetchJournals(); // Refresh entries
         } else {
             const error = await res.json();
@@ -94,6 +92,34 @@ const addJournal = async (event) => {
         console.error('Error adding journal:', err);
     }
 };
+
+// Function to update a journal
+const updateJournal = async (journalId, updatedData) => {
+    try {
+      // API endpoint for updating a journal
+      const res = await fetch(`${apiUrl}/update/${journalId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+           Authorization: `Bearer ${token}` ,
+        },
+        body: JSON.stringify(updatedData), // Updated journal data
+      });
+  
+      if (res.ok) {
+        alert("updated journal")
+        fetchJournals(); // Refresh entries
+    } else {
+        const error = await res.json();
+        alert(`Error: ${error.message}`);
+    }
+  
+    //   alert("Journal updated successfully!");
+    } catch (error) {
+      console.error("Error updating journal:", error);
+      alert("Failed to update the journal. Please try again.");
+    }
+  }
 
 // Delete a journal entry
 const deleteJournal = async (id) => {
@@ -115,17 +141,86 @@ const deleteJournal = async (id) => {
 };
 
 // Log out user
-const logout = () => {
-    localStorage.removeItem('token');
-    window.location.href = 'login.html';
-};
+// const logout = () => {
+//     localStorage.removeItem('token');
+//     window.location.href = 'login.html';
+// };
 
 // Event Listeners
-document.getElementById('journal-form').addEventListener('submit', addJournal);
-document.getElementById('logout-btn').addEventListener('click', logout);
+// document.getElementById('journal-form').addEventListener('submit', addJournal);
+// document.getElementById('logout-btn').addEventListener('click', logout);
+document.getElementById("save-journal-btn").addEventListener('click', addJournal);
+
+
 
 // Fetch user name and journals on load
 window.onload = () => {
     fetchUserName();
     fetchJournals();
 };
+
+
+const cardContainer = document.getElementById('journal-entries');
+const updateTitle = document.getElementById('title');
+const updateContent = document.getElementById('content');
+const cancelUpdate = document.getElementById('back-button');
+const deleteBtn = document.getElementById('delete-btn');
+
+
+// delete journal listener
+deleteBtn.addEventListener("click", () => {
+    console.log(journalEditWorkplace.dataset.cardId)
+    if (journalEditWorkplace.dataset.cardId != '') {
+        deleteJournal(journalEditWorkplace.dataset.cardId)
+        // Hide the update section and clear inputs
+        updateTitle.value = '';
+        updateContent.value = '';
+        document.getElementById('journal-edit-workplace').dataset.cardId = '';//remove the id 
+        document.getElementById("journal-edit-workplace").classList.add('hidden');
+
+    }else{
+        alert("No Journal found!")
+    }
+})
+
+// Event Listener for Cards
+cardContainer.addEventListener('click', (event) => {
+
+    const card = event.target.closest('.journal-card');
+    if (!card) return; // Ensure a card was clicked
+
+    // Extract card details
+    const id = card.getAttribute('data-id');
+    const title = card.getElementsByTagName('h3')[0].innerHTML;
+    const content = card.getElementsByTagName('p')[0].innerHTML;
+
+    // Populate the update section
+    updateTitle.value = title;
+    updateContent.value = content;
+
+    // Show and scroll to the update section
+    document.getElementById("journal-edit-workplace").classList.remove('hidden');
+    // updateSection.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('update-journal-btn').classList.remove('hidden');
+    document.getElementById('save-journal-btn').classList.add('hidden')
+    
+    // Optional: Store the ID for update/delete operations
+    document.getElementById('journal-edit-workplace').dataset.cardId = id;
+});
+
+// update the journal
+document.getElementById("update-journal-btn").addEventListener("click", ()=>{
+    updateJournal(document.getElementById('journal-edit-workplace').dataset.cardId, { updateTitle, updateContent})
+})
+
+// Cancel Update Action
+cancelUpdate.addEventListener('click', () => {
+    // Hide the update section and clear inputs
+    updateTitle.value = '';
+    updateContent.value = '';
+    document.getElementById('journal-edit-workplace').dataset.cardId = '';//remove the id 
+    document.getElementById("journal-edit-workplace").classList.add('hidden');
+    document.getElementById("save-journal-btn").classList.remove('hidden');
+    document.getElementById("update-journal-btn").classList.add('hidden');
+
+});

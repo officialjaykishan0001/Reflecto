@@ -7,21 +7,52 @@
     <title>Dashboard</title>
     <script defer src="/javascripts/dashboard.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
+    <style>
+        /* Optional: Hide default scrollbar (still accessible for keyboard users) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* Internet Explorer 10+ */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen">
-    <!-- Navbar -->
+<body class="bg-[#FBFBFE] text-[#050315]">
+    <!-- Navbar
     <nav class="bg-blue-500 text-white py-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 id="user-name" class="text-xl font-bold">Welcome, User</h1>
             <button id="logout-btn" class="bg-red-500 px-4 py-2 rounded-md hover:bg-red-600">Log Out</button>
         </div>
+    </nav> -->
+
+    <nav class="flex justify-between p-3 items-center">
+        <div class="flex items-center gap-1">
+            <div>
+                <img class="rounded-full"
+                    src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+                    alt="profile-img" width="50px">
+            </div>
+            <div id="user-name" class="font-medium">Hi, Arjun</div>
+        </div>
+        <div>
+            <span class="material-symbols-outlined">
+                menu
+            </span>
+        </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto mt-8 px-4">
-        <!-- Journal Form -->
-        <div class="bg-white p-6 rounded shadow-md mb-6">
+    <!-- <div class="container mx-auto mt-8 px-4"> -->
+    <!-- Journal Form -->
+    <!-- <div class="bg-white p-6 rounded shadow-md mb-6">
             <h2 class="text-2xl font-bold mb-4">Add a New Journal Entry</h2>
             <form id="journal-form" class="space-y-4">
                 <div>
@@ -40,14 +71,182 @@
                     Add Entry
                 </button>
             </form>
-        </div>
+        </div> -->
 
-        <!-- Journal Entries -->
+    <!-- Journal Entries
         <div>
             <h2 class="text-2xl font-bold mb-4">Your Journal Entries</h2>
             <div id="journal-entries" class="space-y-4"></div>
+        </div> -->
+
+    <main>
+        <div class="container p-[13px]">
+            <div class="font-bold text-[25px]">My Journals</div>
+            <!-- Scrollable category section -->
+            <div class="flex gap-2 mt-4 overflow-x-scroll no-scrollbar">
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">All</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Work</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Life</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Travel</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Food</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Fitness</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Books</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Health</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Goals</span>
+                <span
+                    class="border border-black rounded-md w-[50px] text-[12px] flex justify-center px-2 py-1 ">Ideas</span>
+            </div>
+            <!-- Scrollable Journal section -->
+            <div id="journal-entries" class=" mt-4 h-[75vh] w-full overflow-y-scroll no-scrollbar flex flex-wrap gap-4">
+                <!-- Scrollable Card 1 -->
+                <div class="min-h-[150px] w-[45%] bg-[#FEE2E2] p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">Buy honey 100% original</h3>
+                    <p class="text-sm mt-2">
+                        Buy the new brand honey for my family. Here's the price.
+                    </p>
+                </div>
+                <!-- Scrollable Card 2 -->
+                <div class="min-h-[150px] w-[45%] bg-[#FEF9C3] p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">Plan for today</h3>
+                    <ul class="mt-2 space-y-1">
+                        <li class="text-sm">🛒 Buy food</li>
+                        <li class="text-sm">🏋️‍♂️ Gym</li>
+                        <li class="text-sm">📅 Meeting</li>
+                    </ul>
+                </div>
+
+                <!-- Scrollable Card 3 -->
+                <div class="min-h-[150px] bg-[#DBEAFE] p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">Tax payment before the end of March</h3>
+                    <p class="text-sm mt-2">
+                        This is a reminder note to pay taxes before the deadline. Don’t miss it, you could be fined!
+                    </p>
+                </div>
+
+                <!-- Scrollable Card 4 -->
+                <div class="min-h-[150px] bg-[#FFF7EB] p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">Password WiFi gelato cafe</h3>
+                    <p class="text-sm mt-2">
+                        WiFi password is updated every 4 weeks. Keep it safe!
+                    </p>
+                </div>
+                <!-- Scrollable Card 4 -->
+                <div class="min-h-[150px] bg-[#FFF7EB] p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">Password WiFi gelato cafe</h3>
+                    <p class="text-sm mt-2">
+                        WiFi password is updated every 4 weeks. Keep it safe!
+                    </p>
+                </div>
+                <!-- Scrollable Card 4 -->
+                <div class="min-h-[150px] bg-[#FFF7EB] p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">Password WiFi gelato cafe</h3>
+                    <p class="text-sm mt-2">
+                        WiFi password is updated every 4 weeks. Keep it safe!
+                    </p>
+                </div>
+                <!-- Scrollable Card 4 -->
+                <div class="min-h-[150px] bg-[#FFF7EB] p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">Password WiFi gelato cafe</h3>
+                    <p class="text-sm mt-2">
+                        WiFi password is updated every 4 weeks. Keep it safe!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <div id="add-journal" class="bg-[#2f27ce]  fixed p-4 right-4 bottom-9 rounded-xl flex justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+            <path d="M12 4V20M20 12H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </div>
+
+    <div id="journal-edit-workplace"
+        class="hidden w-full max-w-lg p-4 bg-white shadow-lg rounded-lg absolute top-0 h-[100vh]">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b pb-2">
+            <button id="back-button" class="text-gray-500 hover:text-gray-700">
+                <!-- Back Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <div class="flex items-center space-x-4">
+                <button id="delete-btn" class="text-gray-500 hover:text-gray-700">
+                    <!-- Delete Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                        <path d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M3 5.5H21M16.0557 5.5L15.3731 4.09173C14.9196 3.15626 14.6928 2.68852 14.3017 2.39681C14.215 2.3321 14.1231 2.27454 14.027 2.2247C13.5939 2 13.0741 2 12.0345 2C10.9688 2 10.436 2 9.99568 2.23412C9.8981 2.28601 9.80498 2.3459 9.71729 2.41317C9.32164 2.7167 9.10063 3.20155 8.65861 4.17126L8.05292 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M9.5 16.5L9.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M14.5 16.5L14.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                </button>
+                <button class="text-gray-500 hover:text-gray-700">
+                    <!-- Save Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="mt-4 h-[88%]">
+            <input id="title" type="text" placeholder="Title"
+                class="w-full text-2xl font-semibold text-gray-800 outline-none focus:ring-2 focus:ring-blue-500 mb-2" />
+            <textarea id="content" placeholder="Note"
+                class="w-full text-gray-600 outline-none focus:ring-2 focus:ring-blue-500 h-[95%] resize-none"></textarea>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex items-center justify-between mt-4 text-gray-500">
+            <div class="flex items-center space-x-2">
+                <button>
+                    <!-- Color Palette Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 11a3.001 3.001 0 01-2.83 2h-3.34a3.001 3.001 0 01-2.83-2h0M12 17a3.001 3.001 0 002.83-2h3.34a3.001 3.001 0 002.83 2h0M9 17H4m9-4a3.001 3.001 0 002.83-2h3.34a3.001 3.001 0 002.83 2h0" />
+                    </svg>
+                </button>
+                <button>
+                    <!-- Text Style Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 20v-6m-6 6h12M12 4v6m6-6H6m12 0H6" />
+                    </svg>
+                </button>
+            </div>
+            <span id="save-journal-btn" class="text-sm bg-[#2f27ce] text-white p-3">Save</span>
+            <span id="update-journal-btn" class="hidden text-sm bg-[#2f27ce] text-white p-3">Update</span>
         </div>
     </div>
+    <script>
+        const addJournalBtn = document.getElementById("add-journal");
+        const journalEditWorkplace = document.getElementById("journal-edit-workplace");
+        const backBtn = document.getElementById('back-button')
+        addJournalBtn.addEventListener("click", () => {
+            journalEditWorkplace.classList.remove('hidden');
+        })
+        // backBtn.addEventListener("click", () => {
+        //     journalEditWorkplace.classList.add('hidden');
+        // })
+
+    </script>
 </body>
 
 </html>
