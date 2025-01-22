@@ -140,6 +140,14 @@ const deleteJournal = async (id) => {
     }
 };
 
+// Variable Declaration
+const cardContainer = document.getElementById('journal-entries');
+const updateTitle = document.getElementById('title');
+const updateContent = document.getElementById('content');
+const cancelUpdate = document.getElementById('back-button');
+const deleteBtn = document.getElementById('delete-btn');
+
+
 // Log out user
 // const logout = () => {
 //     localStorage.removeItem('token');
@@ -151,25 +159,27 @@ const deleteJournal = async (id) => {
 // document.getElementById('logout-btn').addEventListener('click', logout);
 document.getElementById("save-journal-btn").addEventListener('click', addJournal);
 
+// Event Listener for update journal
+document.getElementById("update-journal-btn").addEventListener("click", ()=>{
+    const title = updateTitle.value;
+    const content = updateContent.value;
+    updateJournal(document.getElementById('journal-edit-workplace').dataset.cardId, { title, content})
+})
 
+// Cancel Update Action
+cancelUpdate.addEventListener('click', () => {
+    // Hide the update section and clear inputs
+    updateTitle.value = '';
+    updateContent.value = '';
+    document.getElementById('journal-edit-workplace').dataset.cardId = '';//remove the id 
+    document.getElementById("journal-edit-workplace").classList.add('hidden');
+    document.getElementById("save-journal-btn").classList.remove('hidden');
+    document.getElementById("update-journal-btn").classList.add('hidden');
 
-// Fetch user name and journals on load
-window.onload = () => {
-    fetchUserName();
-    fetchJournals();
-};
+});
 
-
-const cardContainer = document.getElementById('journal-entries');
-const updateTitle = document.getElementById('title');
-const updateContent = document.getElementById('content');
-const cancelUpdate = document.getElementById('back-button');
-const deleteBtn = document.getElementById('delete-btn');
-
-
-// delete journal listener
+// Event Listener for Delete Journal
 deleteBtn.addEventListener("click", () => {
-    console.log(journalEditWorkplace.dataset.cardId)
     if (journalEditWorkplace.dataset.cardId != '') {
         deleteJournal(journalEditWorkplace.dataset.cardId)
         // Hide the update section and clear inputs
@@ -208,19 +218,19 @@ cardContainer.addEventListener('click', (event) => {
     document.getElementById('journal-edit-workplace').dataset.cardId = id;
 });
 
-// update the journal
-document.getElementById("update-journal-btn").addEventListener("click", ()=>{
-    updateJournal(document.getElementById('journal-edit-workplace').dataset.cardId, { updateTitle, updateContent})
-})
 
-// Cancel Update Action
-cancelUpdate.addEventListener('click', () => {
-    // Hide the update section and clear inputs
-    updateTitle.value = '';
-    updateContent.value = '';
-    document.getElementById('journal-edit-workplace').dataset.cardId = '';//remove the id 
-    document.getElementById("journal-edit-workplace").classList.add('hidden');
-    document.getElementById("save-journal-btn").classList.remove('hidden');
-    document.getElementById("update-journal-btn").classList.add('hidden');
+// Fetch user name and journals on load
+window.onload = () => {
+    fetchUserName();
+    fetchJournals();
+};
 
-});
+
+
+
+
+
+
+
+
+
