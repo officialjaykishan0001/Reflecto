@@ -1,10 +1,22 @@
 const apiUrl = 'https://reflecto-jnv1.onrender.com/api/journals'; // Journals API endpoint
 const userApiUrl = 'https://reflecto-jnv1.onrender.com/api/users'; // Users API endpoint
 const token = localStorage.getItem('token'); // JWT token stored after login
+const alert = document.getElementById('alert');
 
 if (!token) {
     alert('Please log in to access the dashboard.');
     window.location.href = 'login.html';
+}
+
+// Generate Alert function
+const generateAlert = (alertType, alertMessage) => {
+    alert.style.display = '';
+    if(alertType === 'alert-danger'){
+        alert.classList.replace('alert-success', alertType);
+    }else{
+        alert.classList.replace('alert-danger', alertType);
+    }
+    alert.innerHTML = alertMessage;
 }
 
 // Fetch and display user's name
@@ -17,8 +29,10 @@ const fetchUserName = async () => {
         if (res.ok) {
             const user = await res.json();
             document.getElementById('user-name').textContent = `Hi, ${user.username}`;
+            document.getElementById('hamburger-content-user-name').textContent = `${user.username}`;
+
         } else {
-            alert('Failed to fetch user information.');
+            generateAlert('alert-danger', 'Failed to fetch user information.')
         }
     } catch (err) {
         console.error('Error fetching user information:', err);
@@ -79,47 +93,46 @@ const addJournal = async (event) => {
         });
 
         if (res.ok) {
-            // document.getElementById('journal-form').reset();
             document.getElementById('title').value = "";
             document.getElementById('content').value = "";
             document.getElementById('journal-edit-workplace').classList.add('hidden');
             fetchJournals(); // Refresh entries
         } else {
             const error = await res.json();
-            alert(`Error: ${error.message}`);
+            generateAlert('alert-danger', error.message)
         }
     } catch (err) {
         console.error('Error adding journal:', err);
+        generateAlert('alert-danger', 'Error Adding Journal.')
     }
 };
 
 // Function to update a journal
 const updateJournal = async (journalId, updatedData) => {
     try {
-      // API endpoint for updating a journal
-      const res = await fetch(`${apiUrl}/update/${journalId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-           Authorization: `Bearer ${token}` ,
-        },
-        body: JSON.stringify(updatedData), // Updated journal data
-      });
-  
-      if (res.ok) {
-        alert("updated journal")
-        fetchJournals(); // Refresh entries
-    } else {
-        const error = await res.json();
-        alert(`Error: ${error.message}`);
-    }
-  
-    //   alert("Journal updated successfully!");
+        // API endpoint for updating a journal
+        const res = await fetch(`${apiUrl}/update/${journalId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(updatedData), // Updated journal data
+        });
+
+        if (res.ok) {
+            generateAlert('alert-success', 'Journal Updated successfully!')
+            fetchJournals(); // Refresh entries
+        } else {
+            const error = await res.json();
+            generateAlert('alert-danger', error.message)
+        }
+
     } catch (error) {
-      console.error("Error updating journal:", error);
-      alert("Failed to update the journal. Please try again.");
+        console.error("Error updating journal:", error);
+        generateAlert('alert-danger','Failed to update the journal. Please try again.' )
     }
-  }
+}
 
 // Delete a journal entry
 const deleteJournal = async (id) => {
@@ -133,7 +146,7 @@ const deleteJournal = async (id) => {
             fetchJournals(); // Refresh entries
         } else {
             const error = await res.json();
-            alert(`Error: ${error.message}`);
+            generateAlert('alert-danger', error.message);
         }
     } catch (err) {
         console.error('Error deleting journal:', err);
@@ -160,10 +173,10 @@ const deleteBtn = document.getElementById('delete-btn');
 document.getElementById("save-journal-btn").addEventListener('click', addJournal);
 
 // Event Listener for update journal
-document.getElementById("update-journal-btn").addEventListener("click", ()=>{
+document.getElementById("update-journal-btn").addEventListener("click", () => {
     const title = updateTitle.value;
     const content = updateContent.value;
-    updateJournal(document.getElementById('journal-edit-workplace').dataset.cardId, { title, content})
+    updateJournal(document.getElementById('journal-edit-workplace').dataset.cardId, { title, content })
 })
 
 // Cancel Update Action
@@ -188,7 +201,7 @@ deleteBtn.addEventListener("click", () => {
         document.getElementById('journal-edit-workplace').dataset.cardId = '';//remove the id 
         document.getElementById("journal-edit-workplace").classList.add('hidden');
 
-    }else{
+    } else {
         alert("No Journal found!")
     }
 })
@@ -213,7 +226,7 @@ cardContainer.addEventListener('click', (event) => {
     // updateSection.scrollIntoView({ behavior: 'smooth' });
     document.getElementById('update-journal-btn').classList.remove('hidden');
     document.getElementById('save-journal-btn').classList.add('hidden')
-    
+
     // Optional: Store the ID for update/delete operations
     document.getElementById('journal-edit-workplace').dataset.cardId = id;
 });
@@ -225,7 +238,13 @@ window.onload = () => {
     fetchJournals();
 };
 
+// document.getElementById("alert").classList.contains(ss
+if (alert.style.display === '') {
 
+    setInterval(() => {
+        alert.style.display = 'none';
+    }, 2000);
+}
 
 
 
