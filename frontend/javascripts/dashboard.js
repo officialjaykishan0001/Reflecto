@@ -54,14 +54,14 @@ const fetchJournals = async () => {
 
         if (res.ok) {
             const journals = await res.json();
-
+            // journal.content.slice(0, 108) is removed and will be added in future
             const journalEntries = document.getElementById('journal-entries');
             journalEntries.innerHTML = journals
                 .map(
                     (journal) => `
                     <div class="journal-card min-h-[150px] bg-[#DBEAFE] p-4 rounded-lg shadow-md" data-id="${journal._id}">
                   <h3 class="text-lg font-bold">${journal.title}</h3>
-                  <p class="text-sm mt-2">${journal.content.slice(0, 108)}</p>
+                  <p class="text-sm mt-2">${journal.content}</p>
                 </div>
                 `
                 )
@@ -149,6 +149,22 @@ const deleteJournal = async (id) => {
         }
     } catch (err) {
         console.error('Error deleting journal:', err);
+    }
+};
+
+const getJournal = async (id) => {
+    try {
+        const res = await fetch(apiUrl + '/get/' + id, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) {
+            throw new Error('Failed to fetch the journal');
+        }
+        const journal = await res.json(); // Parse the JSON response
+        return journal;
+    } catch (err) {
+        generateAlert('alert-danger', 'Failed to get the journal');
+        console.error(err.message);
     }
 };
 

@@ -47,3 +47,14 @@
 #     "email": "jaykishankharwar215@gmail.com",
 #     "password": "J@ykishan215"
 # }
+
+# GET http://localhost:5000/api/journals/get/678fb44c40627be92eb554f4 
+GET https://reflecto-jnv1.onrender.com/api/journals/get/678fb44c40627be92eb554f4
+
+# POST https://reflecto-jnv1.onrender.com/api/users/login 
+# Content-Type: application/json
+
+# { 
+#     "email": "test@test.com",
+#     "password": "test1"
+# }
