@@ -25,6 +25,9 @@
 #     "content": "this is test content"
 # }
 # GET http://localhost:5000/api/journals/get 
+# GET http://localhost:5000/api/journals/get/678fb44c40627be92eb554f4 
+
+
 
 # PUT  http://localhost:5000/api/journals/update/678cc7ad68d5719c5b07db35 
 # Content-Type: application/json
@@ -37,7 +40,7 @@
 # DELETE  http://localhost:5000/api/journals/delete/678cc7ad68d5719c5b07db35 
 
 
-GET  https://reflecto-jnv1.onrender.com/api/users/me 
+# GET  https://reflecto-jnv1.onrender.com/api/users/me 
 # Content-Type: application/json
 
 # {

@@ -61,14 +61,13 @@ const fetchJournals = async () => {
                     (journal) => `
                     <div class="journal-card min-h-[150px] bg-[#DBEAFE] p-4 rounded-lg shadow-md" data-id="${journal._id}">
                   <h3 class="text-lg font-bold">${journal.title}</h3>
-                  <p class="text-sm mt-2">${journal.content}</p>
+                  <p class="text-sm mt-2">${journal.content.slice(0, 108)}</p>
                 </div>
-                
                 `
                 )
                 .join('');
         } else {
-            alert('Failed to fetch journal entries.');
+            generateAlert('alert-danger', 'Failed to Fetch Journals')
         }
     } catch (err) {
         console.error('Error fetching journals:', err);

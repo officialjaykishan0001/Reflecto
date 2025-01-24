@@ -146,6 +146,25 @@ or use cookies that will be automatically sent.
     }
   ]
   ```
+#### **GET /api/journals/get/:id**
+**Description:** Retrieve single journals by its ID for the authenticated user.  
+**Headers:**
+```http
+Authorization: Bearer <token>
+```
+or use cookies that will be automatically sent.  
+**Response:**
+- **200 OK**
+  ```json
+    {
+      "id": "<JOURNAL_ID>",
+      "user": "<USER_ID>",
+      "title": "My Day",
+      "content": "Today was productive. I learned a lot!",
+      "createdAt": "2025-01-19T12:34:56.789Z"
+    }
+    
+  ```
 
 #### **PUT /api/journals/update/:id**
 **Description:** Update a specific journal entry by its ID.  

@@ -26,6 +26,19 @@ exports.getJournals = async (req, res) => {
     }
 };
 
+exports.getJournal = async (req, res) => {
+    const { id } = req.params;
+    try{
+        const journal = await Journal.findOne({ _id: id, user: req.user.id });
+        if (!journal || journal.user.toString() !== req.user.id) {
+            return res.status(404).json({ message: "Journal not found or unauthorized" });
+        }
+        res.status(200).json(journal);
+    }catch(err){
+        res.status(500).json({ message: 'Failed to fetch journal', error: err.message });
+    }
+}
+
 exports.updateJournal = async (req, res) => {
     const { id } = req.params;
     const { title, content } = req.body;
